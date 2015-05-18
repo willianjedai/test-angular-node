@@ -1,0 +1,19 @@
+{
+  "name": "test-angular-node",
+  "version": "0.0.0",
+  "homepage": "https://github.com/willianjedai/test-angular-node",
+  "authors": [
+    "Willian R. Sabião <willianjedai@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
