@@ -74,11 +74,11 @@ gulp.task('browser-sync', [ 'jadeCompiler', 'cssCompiler', 'jsCompiler' ], funct
       baseDir: "./dist/"
     }
   });
-
+  
   nodemon({
     script: './server/app.js', 
     ext: 'js',
-    ignore: [ path.join( folder.client, folder.js ), 'node_modules/**/*' ],
+    ignore: [ path.join( folder.client, folder.js ), path.join( folder.dist, folder.jsDist ), 'node_modules/**/*' ],
     env: { 'NODE_ENV': 'development' }
   });
 
