@@ -9,7 +9,7 @@ app.use( _bodyParser.urlencoded( { extended: true } ) );
 app.use( _bodyParser.json() );
 app.use( _methodOverride() );
 
-app.use('/', routes);
+app.use('*', routes);
 
 var server = app.listen(process.env.PORT, function () {
   var host = server.address().address;

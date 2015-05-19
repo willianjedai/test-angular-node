@@ -1,8 +1,13 @@
 doctype
-html
+html(ng-app='app')
   head
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=no')
+    
     link(href='/css/style.css', rel='stylesheet')
-  body
+
+  body()
     | Hello World
+    div(ng-view='', ng-cloak)
 
     script(src='/js/all.js', type='text/javascript')

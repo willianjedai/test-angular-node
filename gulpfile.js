@@ -11,7 +11,7 @@ var gulp = require('gulp'),
   del = require('del'),
   path = require('path'),
   folder = {
-    base: './client',
+    client: './client',
     dist: './dist',
     stylus: 'code/stylus/**/*.styl',
     css: 'css',
@@ -28,7 +28,7 @@ var gulp = require('gulp'),
 
 // CSS builder
 gulp.task('cssCompiler', function() {
-  gulp.src( path.join( folder.base, folder.stylus ) )
+  gulp.src( path.join( folder.client, folder.stylus ) )
     .pipe( plumber() )
     .pipe( sourcemaps.init() )
     .pipe( stylus() )
@@ -37,14 +37,14 @@ gulp.task('cssCompiler', function() {
     .pipe( browserSync.reload( { stream: true } ) );
 });
 gulp.task('cssCompress', function() {
-  gulp.src( path.join( folder.base, folder.stylus ) )
+  gulp.src( path.join( folder.client, folder.stylus ) )
     .pipe( stylus({ compress: true }) )
     .pipe( gulp.dest( path.join( folder.dist, folder.css ) ) );
 });
 
 // JS builder
 gulp.task('jsCompiler', function() {
-  gulp.src( [bower.js, path.join( folder.base, folder.js )] )
+  gulp.src( [bower.js, path.join( folder.client, folder.js )] )
     .pipe( plumber() )
     .pipe( sourcemaps.init() )
     .pipe( concat( 'all.js' ) )
@@ -55,7 +55,7 @@ gulp.task('jsCompiler', function() {
 
 // Jade builder
 gulp.task( 'jadeCompiler', function() {
-  gulp.src( path.join( folder.base, folder.jade ) )
+  gulp.src( path.join( folder.client, folder.jade ) )
     .pipe( plumber() )
     .pipe( jade() )
     .pipe( gulp.dest( path.join( folder.dist, folder.html ) ) )
@@ -78,13 +78,13 @@ gulp.task('browser-sync', [ 'jadeCompiler', 'cssCompiler', 'jsCompiler' ], funct
   nodemon({
     script: './server/app.js', 
     ext: 'js',
-    ignore: [ path.join( folder.base, folder.js ) ],
+    ignore: [ path.join( folder.client, folder.js ), 'node_modules/**/*' ],
     env: { 'NODE_ENV': 'development' }
   });
 
-  gulp.watch( path.join( folder.base, folder.stylus ), ['cssCompiler'] );
-  gulp.watch( path.join( folder.base, folder.jade ), ['jadeCompiler'] );
-  gulp.watch( path.join( folder.base, folder.js ), ['jsCompiler'] );
+  gulp.watch( path.join( folder.client, folder.stylus ), ['cssCompiler'] );
+  gulp.watch( path.join( folder.client, folder.jade ), ['jadeCompiler'] );
+  gulp.watch( path.join( folder.client, folder.js ), ['jsCompiler'] );
 });
 
 
